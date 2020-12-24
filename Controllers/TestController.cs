@@ -21,7 +21,7 @@ namespace MVC_Test2.Controllers
             ViewBag.count = list.PageCount;
             return View();
         }
-
+        //gengxinfuwuqiASASASAS
         public ActionResult Del(int id)
         {
             //调用删除方法
