@@ -1,0 +1,64 @@
+﻿
+@{
+    Layout = null;
+    Models.Student s = ViewBag.stu;
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>修改</title>
+</head>
+<body>
+    <div>
+        <form method="post" action="/Test/Edit">
+            <table>
+                <tr>
+                    <td>姓名</td>
+                    <td>
+                        @*将修改数据的主键ID保存到隐藏文本域*@
+                        <input name="sid" type="hidden" value="@s.sid" />
+                    <input name="name" type="text" value="@s.name" /></td>
+                </tr>
+                <tr>
+                    <td>年龄</td>
+                    <td><input name="age" type="text" value="@s.age" /></td>
+                </tr>
+                <tr>
+                    <td>部门</td>
+                    <td>
+                        <select name="deptId">
+                            @foreach (var item in ViewBag.depts)
+                            {
+                                if (s.deptId == item.id)
+                                {
+                                    <option value="@item.id" selected="selected">@item.deptName</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.id">@item.deptName</option>
+                                }
+
+                            }
+
+
+                        </select>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input id="Submit1" type="submit" value="保存" />
+
+
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

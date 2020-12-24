@@ -1,0 +1,70 @@
+﻿
+@{
+    Layout = "~/Views/LayOut.cshtml";
+    List<Models.Student> list = ViewBag.li;
+
+}
+
+
+
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<a href="/Test/Create">新增</a>
+<table border="1" width="100%" class="tabel table-hover table-bordered">
+    <thead>
+        <tr>
+            <td>编号</td>
+            <td>姓名</td>
+            <td>年龄</td>
+            <td>部门</td>
+            <td>操作</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in list)
+        {
+            <tr>
+                <td>@item.sid</td>
+                <td>@item.name</td>
+                <td>@item.age</td>
+                <td>@item.Dept.deptName</td>
+                <td>
+                    <a class="btn btn-success" href="/Test/Del/@item.sid">删除</a>
+                    <a class="btn btn-success" onclick="return del(@item.sid)">删除</a>
+                    <a class="btn btn-success" href="/Test/Update/@item.sid">编辑</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+@*首页*@
+@if (ViewBag.index > 1)
+{
+    <a class="btn btn-success" href="/Test/Index?pageIndex=1">首页</a>
+    <a class="btn btn-success" href="/Test/Index?pageIndex=@(ViewBag.index-1)">上一页</a>
+
+}
+@if (ViewBag.index < ViewBag.count)
+{
+    <a class="btn btn-success" href="/Test/Index?pageIndex=@(ViewBag.index+1)">下一页</a>
+    <a class="btn btn-success" href="/Test/Index?pageIndex=@ViewBag.count">尾页</a>
+
+}
+@section foot{
+    <script>
+        function del(id) {
+            if (confirm('确定删除?')) {
+                location.href = '/Test/Del/' + id;
+            }
+            return false;
+        }
+    </script>
+
+}
+
+@section one{
+    <h1>标题</h1>
+
+}
